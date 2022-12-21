@@ -55,16 +55,19 @@ int main(){
     int j = 0;
     int k = 0;
 
-	while((i++)<5){
+	while((i)<5){
 		sem_init(&forks[i],0,1);
+        i++;
 	}
 
-	while((j++) < 5){
+	while((j) < 5){
 		num[j-1]=j-1;
 		pthread_create(&tid[j-1],NULL,philosopher,(void *)&num[j-1]);
+        j++;
 	}
 
-	while((k++) < 5){
+	while((k) < 5){
 		pthread_join(tid[k],NULL);
+        k++;
 	}
 }
