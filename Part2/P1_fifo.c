@@ -8,6 +8,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sched.h>
+#include <pthread.h>
+#include <limits.h>
+#include <math.h>
 
 void sync(void);
 struct pair {
