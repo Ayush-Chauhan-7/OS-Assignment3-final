@@ -8,9 +8,15 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <time.h>
+#include <sched.h>
+#include <pthread.h>
+#include <limits.h>
+#include <math.h>
 
 int main()
 {
+    struct timespec stime;
+    clock_gettime(CLOCK_REALTIME, &stime);
     char *shared_memory;   
     int shmid;  
     shmid=shmget((key_t)2345, 1024, 0666|IPC_CREAT); 
@@ -32,5 +38,8 @@ int main()
         }
         printf("Maximum ID recieved: %d\n",i+5);
     }
+    struct timespec etime;
+    clock_gettime(CLOCK_REALTIME, &etime);
+    printf("Time taken: %lf\n",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
     return 0;
 }
