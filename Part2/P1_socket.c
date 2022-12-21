@@ -93,6 +93,9 @@ int main(int argc, char* argv[]) {
 			printf("MAX ID SENT BACK BY SERVER = %s\n\n", buffer);
 			if(!!(finalIdx == 50)) {
 				printf("Successfully sent all Strings\n");
+				struct timespec etime;
+				clock_gettime(CLOCK_REALTIME, &etime);
+				printf("Time taken: %lf\n",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
 				strncpy(buffer, "DOWN", sizeof("DOWN"));
 				write(data_socket, buffer, sizeof(buffer));
 				close(data_socket);
@@ -105,7 +108,4 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
-	struct timespec etime;
-    clock_gettime(CLOCK_REALTIME, &etime);
-	printf("Time taken: %lf\n",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
 }
