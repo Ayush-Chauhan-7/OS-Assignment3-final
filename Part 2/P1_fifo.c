@@ -18,6 +18,8 @@ struct pair {
 
 int main()
 {
+    struct timespec stime;
+    clock_gettime(CLOCK_REALTIME, &stime);
     mkfifo("/tmp/randomStrings_2020026_FIFO", 0666);
 
     char strings[50][7];
@@ -53,6 +55,11 @@ int main()
         num = p.ID+1;
         sleep(1);
     }
+    struct timespec stime;
+    clock_gettime(CLOCK_REALTIME, &stime);
     unlink("/tmp/randomStrings_2020026_FIFO");
+    Double *ptr = malloc(sizeof(Double));
+    ptr->x = (end.tv_sec - start.tv_sec) +(end.tv_nsec - start.tv_nsec) / (double)1e9;
+    printf("Time taken: %lf",ptr->x);
     return 0;
 }
