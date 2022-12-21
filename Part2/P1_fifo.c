@@ -57,11 +57,10 @@ int main()
         printf("Resultant string received from P2 = %s\n\n", p.str_value);
         close(fd);
         num = p.ID+1;
-        sleep(1);
     }
     struct timespec etime;
     clock_gettime(CLOCK_REALTIME, &etime);
     unlink("/tmp/randomStrings_2020026_FIFO");
-    printf("Time taken: %lf",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
+    printf("Time taken: %lf\n",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
     return 0;
 }
