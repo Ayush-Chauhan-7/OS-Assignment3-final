@@ -36,7 +36,7 @@ int main()
             strcpy(shared_memory,strings[i+j]);
             while(*shared_memory!=-1);
         }
-        printf("Maximum ID recieved: %d\n",i+5);
+        printf("Maximum ID recieved: %d\n\n",i+4);
     }
     struct timespec etime;
     clock_gettime(CLOCK_REALTIME, &etime);
