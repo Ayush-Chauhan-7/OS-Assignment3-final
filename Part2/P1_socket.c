@@ -5,6 +5,14 @@
 #include<sys/un.h>
 #include<unistd.h>
 #include<time.h>
+#include <stdbool.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sched.h>
+#include <pthread.h>
+#include <limits.h>
+#include <math.h>
 
 #define SOCKET_NAME "mySocket.socket"
 #define BUFFER_SIZE 10
@@ -23,6 +31,8 @@ void getRandStr(char randstrs[][12],int flag) {
 }
 
 int main(int argc, char* argv[]) {
+	struct timespec stime;
+    clock_gettime(CLOCK_REALTIME, &stime);
     int ret,data_socket;
 	struct sockaddr_un addr;
 	char buffer[10];
@@ -95,4 +105,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
+	struct timespec etime;
+    clock_gettime(CLOCK_REALTIME, &etime);
+	printf("Time taken: %lf\n",(etime.tv_sec - stime.tv_sec) +(etime.tv_nsec - stime.tv_nsec) / (double)1e9);
 }
